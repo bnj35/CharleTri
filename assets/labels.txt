@@ -1,0 +1,3 @@
+0 feuille
+1 ciseaux
+2 pierre

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:plant_recognizer_min_2025/widget/plant_recogniser.dart';
+import 'package:trash_recognizer_min_2025/widget/trash_recogniser.dart';
 import '../styles.dart';
 
 class LoginView extends StatefulWidget {
@@ -64,7 +64,7 @@ class _LoginViewState extends State<LoginView> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const PlantRecogniser()),
+                      MaterialPageRoute(builder: (context) => const trashRecogniser()),
                     );
                     if (_formKey.currentState!.validate()) {
                       ScaffoldMessenger.of(context).showSnackBar(

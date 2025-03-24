@@ -15,7 +15,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>plant_recognizer_2025</string>
+	<string>trash_recognizer_2025</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -28,11 +28,11 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>
-This app needs access to camera to take photos of plants for recognition.
+This app needs access to camera to take photos of trashs for recognition.
 </string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>
-This app needs access to photos for plant recognition.
+This app needs access to photos for trash recognition.
 </string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>

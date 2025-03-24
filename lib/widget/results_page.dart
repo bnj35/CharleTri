@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:plant_recognizer_min_2025/styles.dart';
+import 'package:trash_recognizer_min_2025/styles.dart';
 
 class ResultsPage extends StatelessWidget {
   final List<Result> results;

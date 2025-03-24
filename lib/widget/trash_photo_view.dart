@@ -31,9 +31,9 @@ import 'package:flutter/material.dart';
 
 import '../styles.dart';
 
-class PlantPhotoView extends StatelessWidget {
+class trashPhotoView extends StatelessWidget {
   final File? file;
-  const PlantPhotoView({super.key, this.file});
+  const trashPhotoView({super.key, this.file});
 
   @override
   Widget build(BuildContext context) {

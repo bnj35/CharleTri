@@ -5,17 +5,17 @@ import 'package:image/image.dart' as img;
 import 'package:image_picker/image_picker.dart';
 import '../classifier/classifier.dart';
 import '../styles.dart';
-import 'plant_photo_view.dart';
+import 'trash_photo_view.dart';
 import 'results_page.dart';
 
 const _labelsFileName = 'labels.txt';
 const _modelFileName = 'model_unquant.tflite';
 
-class PlantRecogniser extends StatefulWidget {
-  const PlantRecogniser({super.key});
+class trashRecogniser extends StatefulWidget {
+  const trashRecogniser({super.key});
 
   @override
-  State<PlantRecogniser> createState() => _PlantRecogniserState();
+  State<trashRecogniser> createState() => _trashRecogniserState();
 }
 
 enum _ResultStatus {
@@ -24,7 +24,7 @@ enum _ResultStatus {
   found,
 }
 
-class _PlantRecogniserState extends State<PlantRecogniser> {
+class _trashRecogniserState extends State<trashRecogniser> {
   bool _isAnalyzing = false;
   bool _isLoading = true;
   final picker = ImagePicker();
@@ -32,7 +32,7 @@ class _PlantRecogniserState extends State<PlantRecogniser> {
 
   // Result
   _ResultStatus _resultStatus = _ResultStatus.notStarted;
-  String _plantLabel = ''; // Name of Error Message
+  String _trashLabel = ''; // Name of Error Message
   double _accuracy = 0.0;
 
   Classifier? _classifier;
@@ -64,7 +64,7 @@ class _PlantRecogniserState extends State<PlantRecogniser> {
         setState(() {
           _isLoading = false;
           _resultStatus = _ResultStatus.notStarted;
-          _plantLabel = 'Error: Classifier initialization failed';
+          _trashLabel = 'Error: Classifier initialization failed';
         });
         return;
       }
@@ -80,7 +80,7 @@ class _PlantRecogniserState extends State<PlantRecogniser> {
       setState(() {
         _isLoading = false;
         _resultStatus = _ResultStatus.notFound;
-        _plantLabel = 'Error loading classifier: $e';
+        _trashLabel = 'Error loading classifier: $e';
       });
     }
   }
@@ -159,7 +159,7 @@ class _PlantRecogniserState extends State<PlantRecogniser> {
     return Stack(
       alignment: AlignmentDirectional.center,
       children: [
-        PlantPhotoView(file: _selectedImageFile),
+        trashPhotoView(file: _selectedImageFile),
         _buildAnalyzingText(),
       ],
     );
@@ -221,7 +221,7 @@ class _PlantRecogniserState extends State<PlantRecogniser> {
       debugPrint('Classifier is not initialized');
       setState(() {
         _resultStatus = _ResultStatus.notFound;
-        _plantLabel = 'Error: Classifier not ready';
+        _trashLabel = 'Error: Classifier not ready';
         _accuracy = 0.0;
       });
       return;
@@ -236,26 +236,26 @@ class _PlantRecogniserState extends State<PlantRecogniser> {
       final result = resultCategory.score >= 0.5
           ? _ResultStatus.found
           : _ResultStatus.notFound;
-      final plantLabel = resultCategory.label;
+      final trashLabel = resultCategory.label;
       final accuracy = resultCategory.score;
 
       setState(() {
         _resultStatus = result;
-        _plantLabel = plantLabel;
+        _trashLabel = trashLabel;
         _accuracy = accuracy;
       });
 
       // Store the result
       _previousResults.add(Result(
         imageFile: image,
-        label: plantLabel,
+        label: trashLabel,
         accuracy: accuracy,
       ));
     } catch (e) {
       debugPrint('Error during image analysis: $e');
       setState(() {
         _resultStatus = _ResultStatus.notFound;
-        _plantLabel = 'Error during analysis';
+        _trashLabel = 'Error during analysis';
         _accuracy = 0.0;
       });
     } finally {
@@ -269,7 +269,7 @@ class _PlantRecogniserState extends State<PlantRecogniser> {
     if (_resultStatus == _ResultStatus.notFound) {
       title = 'Fail to recognise';
     } else if (_resultStatus == _ResultStatus.found) {
-      title = _plantLabel;
+      title = _trashLabel;
     } else {
       title = '';
     }

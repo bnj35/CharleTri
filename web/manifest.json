@@ -1,6 +1,6 @@
 {
-    "name": "plant_recognizer_min_2025",
-    "short_name": "plant_recognizer_min_2025",
+    "name": "trash_recognizer_min_2025",
+    "short_name": "trash_recognizer_min_2025",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

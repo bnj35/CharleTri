@@ -4,44 +4,34 @@ const kMainFont = 'Roboto';
 const kButtonFont = 'Roboto';
 const kDisplayFont = 'SquadaOne';
 
-const kColorGreen = Color(0xFF000000); // Changed to black
-const kColorLightGreen = Color.fromARGB(255, 241, 241, 241); // Changed to gray
-const kColorBrown = Color(0xFF0000FF); // Changed to blue
-const kColorLightYellow = Color(0xFFFFFFFF); // Changed to white
+const kColorBlack = Color.fromARGB(255, 24, 24, 24);
+const kColorBlue = Color.fromARGB(255, 0, 68, 255);
 
-const kColorRed = Color(0xFF000000); // Changed to black
-const kColorLightRed = Color(0xFF808080); // Changed to gray
-const kColorLightGray = Color(0xFFD3D3D3); // Changed to light gray
-
-const kColorHunterGreen = Color(0xFF000000); // Changed to black
-const kColorMayGreen = Color(0xFF808080); // Changed to gray
-const kColorAndroidGreen = Color(0xFFD3D3D3); // Changed to light gray
-const kColorEggshell = Color(0xFFFFFFFF); // Changed to white
-const kColorBitterSweetShimmer = Color(0xFF000000); // Changed to black
-
-const kBgColor = kColorGreen;
+const kBgColor = Color.fromARGB(255, 246, 246, 246);
+const kBarColor = Color.fromARGB(255, 255, 255, 255);
 
 const kTitleTextStyle = TextStyle(
   fontFamily: kDisplayFont,
   fontSize: 50.0,
-  color: kColorAndroidGreen,
+  color: Color.fromARGB(255, 12, 12, 12),
   decoration: TextDecoration.none,
 );
 
 const kAnalyzingTextStyle = TextStyle(
     fontFamily: kMainFont,
     fontSize: 25.0,
-    color: kColorEggshell,
+    color: kColorBlack,
     decoration: TextDecoration.none);
 
 const kResultTextStyle = TextStyle(
     fontFamily: kDisplayFont,
     fontSize: 35.0,
-    color: kColorLightYellow,
+    color: kColorBlack,
     decoration: TextDecoration.none);
 
 const kResultRatingTextStyle = TextStyle(
     fontFamily: kMainFont,
     fontSize: 18.0,
-    color: Colors.white,
+    color: kColorBlack,
+    
     decoration: TextDecoration.none);

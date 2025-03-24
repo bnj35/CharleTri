@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:plant_recognizer_min_2025/styles.dart';
 
 class ResultsPage extends StatelessWidget {
   final List<Result> results;
@@ -11,16 +12,16 @@ class ResultsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Previous Results', style: TextStyle(
+        title: const Text('Account', style: TextStyle(
           fontFamily: 'SquadaOne',
           fontSize: 50.0,
-          color: Color(0xFFD3D3D3),
+          color: kColorBlue,
           decoration: TextDecoration.none,
         )),
-        backgroundColor: Color(0xFF000000),
+        backgroundColor: kBgColor,
       ),
       body: Container(
-        color: Colors.black,
+        color: kBgColor,
         child: ListView.builder(
           itemCount: results.length,
           itemBuilder: (context, index) {
@@ -30,13 +31,13 @@ class ResultsPage extends StatelessWidget {
               title: Text(result.label, style: TextStyle(
                 fontFamily: 'SquadaOne',
                 fontSize: 35.0,
-                color: Color(0xFFFFFFFF),
+                color: kColorBlue,
                 decoration: TextDecoration.none,
               )),
               subtitle: Text('Accuracy: ${(result.accuracy * 100).toStringAsFixed(2)}%', style: TextStyle(
                 fontFamily: 'Roboto',
                 fontSize: 18.0,
-                color: Colors.white,
+                color: kColorBlack,
                 decoration: TextDecoration.none,
               )),
             );

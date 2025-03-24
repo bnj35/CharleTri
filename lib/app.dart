@@ -28,8 +28,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'widget/plant_recogniser.dart';
+import 'widget/login_view.dart'; // Import LoginView
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
@@ -43,9 +42,9 @@ class MainApp extends StatelessWidget {
       ],
     );
     return MaterialApp(
-      title: 'Flower Min',
+      title: 'Charle tri',
       theme: ThemeData.light(),
-      home: const PlantRecogniser(),
+      home: const LoginView(), // Set LoginView as the home page
       debugShowCheckedModeBanner: false,
     );
   }

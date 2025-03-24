@@ -1,3 +1,2 @@
-0 feuille
-1 ciseaux
-2 pierre
+0 Organic
+1 Recyclable

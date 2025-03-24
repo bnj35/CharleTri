@@ -118,7 +118,7 @@ class Classifier {
       final inputBuffer = processedImageData.reshape([1, 224, 224, 3]);
 
       // Create an output buffer to store the model's predictions, assuming output shape [1, 4]
-      final outputBuffer = List.generate(1, (_) => List.filled(3, 0.0));
+      final outputBuffer = List.generate(1, (_) => List.filled(2, 0.0));
 
       debugPrint('Running inference...');
       debugPrint('Model expected input shape: ${_model.inputShape}');

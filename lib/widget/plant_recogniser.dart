@@ -40,6 +40,8 @@ class _PlantRecogniserState extends State<PlantRecogniser> {
   // Add this list to store previous results
   List<Result> _previousResults = [];
 
+  int _selectedIndex = 0;
+
   @override
   void initState() {
     super.initState();
@@ -83,6 +85,25 @@ class _PlantRecogniserState extends State<PlantRecogniser> {
     }
   }
 
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    if (index == 0) {
+      _onPickPhoto(ImageSource.camera);
+    } else if (index == 1) {
+      _onPickPhoto(ImageSource.gallery);
+    } else if (index == 2) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ResultsPage(results: _previousResults),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     if (_isLoading) {
@@ -107,18 +128,29 @@ class _PlantRecogniserState extends State<PlantRecogniser> {
             const SizedBox(height: 10),
             _buildResultView(),
             const Spacer(flex: 5),
-            _buildPickPhotoButton(
-              title: 'Take a photo',
-              source: ImageSource.camera,
-            ),
-            _buildPickPhotoButton(
-              title: 'Pick from gallery',
-              source: ImageSource.gallery,
-            ),
-            _buildViewResultsButton(), // Add this button
             const Spacer(),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: kBarColor,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.camera_alt),
+            label: 'Take a photo',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.photo_library),
+            label: 'Pick from gallery',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.man),
+            label: 'View Account',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: kColorBlue,
+        onTap: _onItemTapped,
       ),
     );
   }
@@ -142,79 +174,9 @@ class _PlantRecogniserState extends State<PlantRecogniser> {
 
   Widget _buildTitle() {
     return const Text(
-      'PFC',
+      'CharleTri',
       style: kTitleTextStyle,
       textAlign: TextAlign.center,
-    );
-  }
-
-  Widget _buildPickPhotoButton({
-    required ImageSource source,
-    required String title,
-  }) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: ElevatedButton(
-        // Changed from TextButton to ElevatedButton
-        onPressed: () {
-          debugPrint('Button pressed for source: $source');
-          _onPickPhoto(source);
-        },
-        style: ElevatedButton.styleFrom(
-          backgroundColor: kColorBrown,
-          padding: EdgeInsets.zero,
-        ),
-        child: SizedBox(
-          width: 300,
-          height: 50,
-          child: Center(
-            child: Text(
-              title,
-              style: const TextStyle(
-                fontFamily: kButtonFont,
-                fontSize: 20.0,
-                fontWeight: FontWeight.w600,
-                color: kColorLightYellow,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildViewResultsButton() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: ElevatedButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ResultsPage(results: _previousResults),
-            ),
-          );
-        },
-        style: ElevatedButton.styleFrom(
-          backgroundColor: kColorBrown,
-          padding: EdgeInsets.zero,
-        ),
-        child: const SizedBox(
-          width: 300,
-          height: 50,
-          child: Center(
-            child: Text(
-              'View Previous Results',
-              style: TextStyle(
-                fontFamily: kButtonFont,
-                fontSize: 20.0,
-                fontWeight: FontWeight.w600,
-                color: kColorLightYellow,
-              ),
-            ),
-          ),
-        ),
-      ),
     );
   }
 
@@ -271,7 +233,7 @@ class _PlantRecogniserState extends State<PlantRecogniser> {
       final imageInput = img.decodeImage(image.readAsBytesSync())!;
       final resultCategory = _classifier!.predict(imageInput);
 
-      final result = resultCategory.score >= 0.8
+      final result = resultCategory.score >= 0.5
           ? _ResultStatus.found
           : _ResultStatus.notFound;
       final plantLabel = resultCategory.label;
@@ -322,6 +284,7 @@ class _PlantRecogniserState extends State<PlantRecogniser> {
         Text(title, style: kResultTextStyle),
         const SizedBox(height: 10),
         Text(accuracyLabel, style: kResultRatingTextStyle)
+        
       ],
     );
   }

@@ -40,7 +40,7 @@ class PlantPhotoView extends StatelessWidget {
     return Container(
       width: 250,
       height: 250,
-      color: Colors.blueGrey,
+      color: kColorBlue,
       child: (file == null)
           ? _buildEmptyView()
           : Image.file(file!, fit: BoxFit.cover),
